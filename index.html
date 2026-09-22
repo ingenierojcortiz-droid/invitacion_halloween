@@ -313,6 +313,12 @@
 </head>
 <body>
 
+<button id="musicBtn" aria-label="Activar música de fondo" style="position: fixed; top: 16px; left: 16px; z-index: 10000; display: inline-flex; align-items: center; gap: 8px; background: linear-gradient(90deg, #ff8c3c, #a45ce0); color: #1c0f2e; font-weight: 700; font-size: 13px; letter-spacing: 0.5px; padding: 10px 16px; border-radius: 999px; border: none; box-shadow: 0 0 14px 3px rgba(255,140,60,0.5); font-family: 'Poppins', sans-serif;">
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M9 18V5l12-2v13" stroke="#1c0f2e" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><circle cx="6" cy="18" r="3" stroke="#1c0f2e" stroke-width="1.8"/><circle cx="18" cy="16" r="3" stroke="#1c0f2e" stroke-width="1.8"/></svg>
+  <span id="musicBtnLabel">Activar música</span>
+</button>
+<div id="yt-audio" style="position: fixed; width: 0; height: 0; overflow: hidden; left: -9999px;"></div>
+
 <section id="inicio" class="page active bg-hero">
   <svg width="56" height="56" viewBox="0 0 70 70" style="position:absolute; top: 28px; right: 28px;">
     <circle cx="35" cy="35" r="30" fill="#f2e9c9"/>
@@ -464,6 +470,27 @@
     btn.addEventListener('mouseleave', function () {
       btn.classList.remove('fading');
     });
+  });
+
+  /* Música de fondo: video oficial de YouTube, oculto, solo audio, activado por el usuario */
+  var musicBtn = document.getElementById('musicBtn');
+  var musicLabel = document.getElementById('musicBtnLabel');
+  var ytContainer = document.getElementById('yt-audio');
+  var playing = false;
+
+  musicBtn.addEventListener('click', function () {
+    if (!playing) {
+      ytContainer.innerHTML =
+        '<iframe width="1" height="1" ' +
+        'src="https://www.youtube.com/embed/sOnqjkJTMaA?autoplay=1&loop=1&playlist=sOnqjkJTMaA&controls=0" ' +
+        'allow="autoplay" frameborder="0"></iframe>';
+      musicLabel.textContent = 'Pausar música';
+      playing = true;
+    } else {
+      ytContainer.innerHTML = '';
+      musicLabel.textContent = 'Activar música';
+      playing = false;
+    }
   });
 })();
 </script>
