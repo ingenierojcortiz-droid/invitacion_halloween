@@ -204,23 +204,29 @@
     right: 22px;
     display: flex;
     justify-content: space-between;
-    gap: 10px;
+    gap: 14px;
     z-index: 5;
   }
   .page-bar button {
     display: inline-flex;
     align-items: center;
-    gap: 6px;
-    background: rgba(0,0,0,0.45);
-    border: 1.3px solid rgba(245,234,214,0.5);
+    gap: 8px;
+    background: rgba(0,0,0,0.55);
+    border: 2px solid var(--naranja);
     color: var(--texto);
-    font-size: 12px;
+    font-size: 17px;
     letter-spacing: 1px;
-    font-weight: 600;
-    padding: 9px 16px;
+    font-weight: 700;
+    padding: 16px 26px;
     border-radius: 999px;
+    animation: flicker 2.4s infinite, wiggle 2.6s ease-in-out infinite;
   }
-  .page-bar button:hover { border-color: var(--naranja); color: var(--naranja); }
+  .page-bar button.menu-btn { border-color: var(--morado); }
+  .page-bar button:hover { color: var(--naranja); }
+  @keyframes wiggle {
+    0%, 100% { transform: translateY(0) scale(1); }
+    50% { transform: translateY(-4px) scale(1.05); }
+  }
 
   /* --- Efectos: brillo naranja al pasar el mouse + murciélagos gigantes al hacer clic --- */
   .navlink, .btn, .btn-cta, .big-cta {
@@ -276,8 +282,8 @@
   /* --- Adaptación a pantalla de celular --- */
   @media (max-width: 480px) {
     .page { padding: 40px 18px; }
-    .page-bar { top: 14px; left: 14px; right: 14px; }
-    .page-bar button { font-size: 10.5px; padding: 7px 11px; gap: 4px; }
+    .page-bar { top: 16px; left: 16px; right: 16px; flex-direction: column; gap: 10px; }
+    .page-bar button { font-size: 14px; padding: 13px 20px; gap: 6px; width: 100%; justify-content: center; }
     .eyebrow { font-size: 11px; letter-spacing: 2px; }
     .desc { font-size: 14px; max-width: 100%; }
     .pill { font-size: 12px; padding: 7px 16px; }
